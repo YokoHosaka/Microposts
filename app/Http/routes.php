@@ -23,3 +23,8 @@ Route::post('signup', 'Auth\Authcontroller@postRegister')->name('signup.post');
 Route::get('login', 'Auth\AuthController@getlogin')->name('login.get');
 Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
 Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
+
+//ログイン認証付きのルーティング
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    });
