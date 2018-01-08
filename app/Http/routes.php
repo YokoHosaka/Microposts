@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//ユーザー登録
+Route::get('signup', 'Auth\AuthController@getRegister')->name('signup.get');
+Route::post('signup', 'Auth\Authcontroller@postRegister')->name('signup.post');
+
+//ログイン認証
+Route::get('login', 'Auth\AuthController@getlogin')->name('login.get');
+Route::post('login', 'Auth\AuthController@postLogin')->name('login.post');
+Route::get('logout', 'Auth\AuthController@getLogout')->name('logout.get');
