@@ -24,9 +24,15 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $microposts = $user->microposts()->orderBy('created_at', 'desc')->pagenate(10);
         
-        return view('users.show', [
-            'user' => $user, 
-        ]);
+        $data = [
+            'user' => $user,
+            'microposts' => $microposts,
+        ];
+        
+        $data += $this->conts($user);
+        
+        return view('users.show', $data);
     }
 }
