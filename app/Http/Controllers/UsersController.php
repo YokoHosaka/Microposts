@@ -1,10 +1,10 @@
- <? php
+<?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\User;
@@ -31,8 +31,38 @@ class UsersController extends Controller
             'microposts' => $microposts,
         ];
         
-        $data += $this->conts($user);
+        $data += $this->counts($user);
         
         return view('users.show', $data);
+    }   
+    
+    public function followings($id)
+    {
+        $user = User::find(id);
+        $followings = $user->followings()->pagenate(10);
+        
+        $data = [
+            'user' => $user,
+            'users' => $followings,
+            ];
+    
+        $data += $this->counts($user);
+        
+        return view('users.followings', $data);
+    }
+    
+    public function followers($id)
+    {
+        $user = User::find($id);
+        $followers = $user->followers()->pagenate(10);
+        
+        $data = [
+            'user' => $user,
+            'users' => $followers,
+            ];
+            
+        $data += $this->counts($user);
+        
+        return view('users.followers', $data);
     }
 }

@@ -10,6 +10,7 @@ class CreateMicropostsTable extends Migration
      *
      * @return void
      */
+     
     public function up()
     {
         Schema::create('microposts', function (Blueprint $table) {

@@ -6,23 +6,23 @@
     </div>
     
     <div class="row">
-        <dic class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-3">
             
             {!! Form::open(['route' => 'login.post']) !!}
                 <div class="form-group">
-                    { !! Form::label('email', 'Email') !!}
-                    { !! Form::email('email', old('email'), ['class' => 'form-control']) !!} 
+                    {!! Form::label('email', 'Email') !!}
+                    {!! Form::email('email', old('email'), ['class' => 'form-control']) !!} 
                 </div>
                 
                 <div class="form-group">
-                    { !! Form::label('password', 'Password') !!}
-                    { !! Form::password('password', ['class' => 'form-control']) !!}
+                    {!! Form::label('password', 'Password') !!}
+                    {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
                 
-                { !!form::submit{'log in', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('log in', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
             
-            <p>New user ? {!! link-_to_route('signup.get', 'Sign up now!') !!}</p>
+            <p>New user ? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
         </div>
     </div>
 @endsection
