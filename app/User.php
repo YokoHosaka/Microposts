@@ -65,7 +65,7 @@ class User extends Model implements AuthenticatableContract,
     public function unfollow($userId){
         //すでにフォローしていればフォローを外す
         $exist = $this->is_following($userId);
-        //自分自身っ出ないかの確認
+        //自分自身でないかの確認
         $its_me = $this->id ==$userId;
         
         if($exist && !$its_me){
@@ -78,8 +78,16 @@ class User extends Model implements AuthenticatableContract,
             }
         }
 
-public function is_following($userId){
-    return $this->followings()->where('follow_id', 'user_id')->exists();
+    public function is_following($userId)
+    {
+        return $this->followings()->where('follow_id', 'user_id')->exists();
+    }
+    
+    public function feed_microposts()
+    {
+        $follow_user_ids = $this->followings()->lists('users.id')->toArray();
+        $follow_user_ids[] = $this->id;
+        return Micropost::whereIn('user_id', $follow_user_ids);
     }
 }
 
