@@ -16,7 +16,7 @@ class MicropostsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -98,4 +98,5 @@ class MicropostsController extends Controller
         
         return redirect()->back();
     }
+    
 }

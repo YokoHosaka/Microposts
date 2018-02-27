@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class UserFollowController extends Controller
+class FavoritesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,12 +35,17 @@ class UserFollowController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+     public function store(Request $request, $id)
     {
-        \Auth::user()->follow($id);
+        \Auth::user()->add_favorite($id);
         return redirect()->back();
     }
-
+    
+    /**
+    *return redirect()->back();　お気に入り追加ボタンを押したら処理はされるが画面は切り替わらないのがこの書き方
+    */
+    
+    
     /**
      * Display the specified resource.
      *
@@ -83,7 +88,7 @@ class UserFollowController extends Controller
      */
     public function destroy($id)
     {
-        \Auth::user()->unfollow($id);
+        \Auth::user()->drop_favorite($id);
         return redirect()->back();
     }
 }
